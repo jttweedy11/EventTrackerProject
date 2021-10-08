@@ -22,13 +22,13 @@ DROP TABLE IF EXISTS `hunt` ;
 
 CREATE TABLE IF NOT EXISTS `hunt` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `property_name` VARCHAR(45) NULL,
-  `size` VARCHAR(45) NULL,
+  `name` VARCHAR(255) NULL,
+  `size` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
-DROP USER hunt@localhost;
+DROP USER IF EXISTS hunt@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 CREATE USER 'hunt'@'localhost' IDENTIFIED BY 'hunt@localhost';
 
@@ -43,7 +43,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `huntDB`;
-INSERT INTO `hunt` (`id`, `property_name`, `size`) VALUES (1, 'Jacob', '2 Acres');
+INSERT INTO `hunt` (`id`, `name`, `size`) VALUES (1, 'Jacob', '2 Acres');
 
 COMMIT;
 
