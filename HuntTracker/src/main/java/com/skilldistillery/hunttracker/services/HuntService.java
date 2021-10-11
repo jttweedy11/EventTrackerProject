@@ -15,5 +15,7 @@ public interface HuntService {
 	Hunt findById(Integer huntId);
 
 	Hunt replaceHunt(Integer huntId, Hunt hunt);
+	
+	List<Hunt> findByName(String hname);
 
 }

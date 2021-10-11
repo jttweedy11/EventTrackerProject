@@ -44,7 +44,6 @@ public class HuntServiceImple implements HuntService {
 
 	@Override
 	public Hunt replaceHunt(Integer huntId, Hunt hunt) {
-		// TODO Auto-generated method stub
 		Hunt replaceHunt = hunt;
 		Optional<Hunt> tempReplacementHunt = huntRepo.findById(huntId);
 		Hunt toReplaceHunt = tempReplacementHunt.get();
@@ -55,5 +54,11 @@ public class HuntServiceImple implements HuntService {
 		huntRepo.saveAndFlush(toReplaceHunt);
 
 		return toReplaceHunt;
+	}
+
+	@Override
+	public List<Hunt> findByName(String hname) {
+		List<Hunt> newHunt = huntRepo.findByNameLike(hname);
+		return newHunt;
 	}
 }

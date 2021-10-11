@@ -33,6 +33,13 @@ public class HuntController {
 		return newHunt;
 	}
 
+	@GetMapping("hunts/nameSearch/{hname}")
+	private List<Hunt> findByName(@PathVariable String hname) {
+		String newhname = "%" + hname + "%";
+		List<Hunt> newHuntList = huntServ.findByName(newhname);
+		return newHuntList;
+	}
+
 	@PostMapping("hunts/create")
 	private Hunt create(@RequestBody Hunt hunt) {
 		Hunt newHunt = null;
@@ -50,5 +57,4 @@ public class HuntController {
 		Hunt newHunt = huntServ.replaceHunt(huntId, hunt);
 		return newHunt;
 	}
-
 }
