@@ -22,8 +22,11 @@ DROP TABLE IF EXISTS `hunt` ;
 
 CREATE TABLE IF NOT EXISTS `hunt` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NULL,
-  `size` VARCHAR(255) NULL,
+  `name` VARCHAR(255) NULL DEFAULT NULL,
+  `size` VARCHAR(255) NULL DEFAULT NULL,
+  `notes` VARCHAR(255) NULL,
+  `url` VARCHAR(1000) NULL DEFAULT NULL,
+  `event_date` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -43,7 +46,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `huntDB`;
-INSERT INTO `hunt` (`id`, `name`, `size`) VALUES (1, 'Jacob', '2 Acres');
+INSERT INTO `hunt` (`id`, `name`, `size`, `notes`, `url`, `event_date`) VALUES (1, 'Jacob', '2 Acres', NULL, NULL, NULL);
 
 COMMIT;
 
