@@ -153,15 +153,14 @@ function displayHunts(hunts) {
 		});
 
 		let td7 = document.createElement('td');
-		btn = document.createElement('button');
-		td7.appendChild(btn);
+		var editbtn = document.createElement('button');
+		td7.appendChild(editbtn);
 		tr.appendChild(td7);
-		btn.textContent = 'Edit Hunt';
-		btn.name = "editHunt";
-		btn.value = hunt;
-		btn.addEventListener('click', function(event) {
+		editbtn.textContent = 'Edit Hunt';
+		editbtn.name = "editHunt";
+		editbtn.value = hunt;
+		editbtn.addEventListener('click', function(event) {
 			event.preventDefault();
-			console.log(hunt);
 			editHunt(hunt);
 		});
 	}
