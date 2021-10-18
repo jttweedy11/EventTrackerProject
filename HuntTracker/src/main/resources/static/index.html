@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+
+table, thead, th, td {
+	border: 1px solid black;
+}
+
+
+</style>
 <link rel="shortcut icon" type="image/png" href="favicon.png" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -13,13 +21,23 @@
 		<button name="lookup">Get Hunt by ID:</button>
 	</form>
 	<br>
-	<form>
-	<button name = 'listall'>List All Hunts</button>
-	
+	<form name="allHuntForm">
+		<button name="listAll">List All Hunts</button>
 	</form>
 	<div id="output">
 		<div id="huntData"></div>
+		<div id="allHunts"></div>
 	</div>
+	<br>
+	<h1>Create Hunt</h1>
+	<form name="addHunt">
+		<input type="text" name="name" placeholder="Property Name"><br>
+		<input type="text" name="size" placeholder="Property Size (acr)"><br>
+		<input type="text" name="notes" placeholder="Property Notes"><br>
+		<input type="text" name="url" placeholder="Property Url"><br>
+		<button name="addHunt">Add Hunt</button>
+	</form>
+
 
 </body>
 </html>
