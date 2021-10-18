@@ -12,6 +12,11 @@ function init() {
 			getHunt(huntId);
 		}
 	});
+	
+	document.aggregate.show.addEventListener('click', function(event) {
+		event.preventDefault();
+		getAggregate();
+	})
 
 	document.allHuntForm.listAll.addEventListener('click', function(event) {
 		event.preventDefault();
@@ -37,12 +42,6 @@ function init() {
 
 
 }
-
-// TODO
-// * Retrieve all hunts and display in table
-// * Click on a hunt to display details
-// * Button to delete a hunt.
-// * Button to update, load hunt into form inputs with button to PUT
 
 function getHunt(huntId) {
 	var xhr = new XMLHttpRequest();
@@ -77,17 +76,6 @@ function getAllHunts() {
 	xhr.send(null);
 }
 
-//function displayHunts(hunts) {
-//	let huntsDiv = document.getElementById('allHunts');
-//	huntsDiv.textContent = '';
-//	let ul = document.createElement('ul');
-//	huntsDiv.appendChild(ul);
-//	for(hunt of hunts) {
-//		let li = document.createElement('li');
-//		li.textContent = hunt.name;
-//		ul.appendChild(li);
-//	}
-//}
 
 function displayHunts(hunts) {
 	let huntsDiv = document.getElementById('allHunts');
