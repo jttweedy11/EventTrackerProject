@@ -113,6 +113,9 @@ function displayHunts(hunts) {
 	let th6 = document.createElement('th');
 	th6.textContent = 'Delete';
 	thead.appendChild(th6);
+	let th7 = document.createElement('th');
+	th7.textContent = 'Edit';
+	thead.appendChild(th7);
 	for (hunt of hunts) {
 		let tr = document.createElement('tr');
 		let td1 = document.createElement('td');
@@ -148,10 +151,37 @@ function displayHunts(hunts) {
 			event.preventDefault();
 			deleteHunt(btn.value);
 		});
+
+		let td7 = document.createElement('td');
+		btn = document.createElement('button');
+		td7.appendChild(btn);
+		tr.appendChild(td7);
+		btn.textContent = 'Edit Hunt';
+		btn.name = "editHunt";
+		btn.value = hunt;
+		btn.addEventListener('click', function(event) {
+			event.preventDefault();
+			console.log(hunt);
+			editHunt(hunt);
+		});
 	}
 	table.appendChild(thead);
 	table.appendChild(tblBody);
 	huntsDiv.appendChild(table);
+}
+
+function editHunt(hunt) {
+	var dataDiv = document.getElementById('editData');
+	console.log(hunt);
+	let form = document.createElement('form');
+	form.name = "editHunt";
+	let input = document.createElement('input');
+	input.type = "text";
+	input.name = "name";
+	input.placeholder = hunt.name;
+	console.log(form);
+	form.appendChild(input);
+	dataDiv.appendChild(form);
 }
 
 
@@ -170,11 +200,22 @@ function displayHunt(hunt) {
 	li.textContent = hunt.notes;
 	ul.appendChild(li);
 	li = document.createElement('li');
-	li.textContent = hunt.url;
+	let a = document.createElement('a');
+	a.href = hunt.url;
+	a.textContent = hunt.url;
+	li.appendChild(a);
 	ul.appendChild(li);
 	li = document.createElement('li');
 	li.textContent = hunt.eventDate;
 	ul.appendChild(li);
+	li = document.createElement('li');
+	a = document.createElement('a');
+	a.href = 'huntDetails.html';
+	a.textContent = 'Edit Hunt';
+	a.id = hunt.id;
+	li.appendChild(a);
+	ul.appendChild(li);
+
 
 }
 
