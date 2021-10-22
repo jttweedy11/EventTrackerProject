@@ -202,8 +202,6 @@ function displayHunt(hunt) {
 	a.id = hunt.id;
 	li.appendChild(a);
 	ul.appendChild(li);
-
-
 }
 
 function postNewHunt(newHunt) {
@@ -215,6 +213,7 @@ function postNewHunt(newHunt) {
 			if (xhr.status === 200 || xhr.responseText === 201) {
 				let hunt = JSON.parse(xhr.responseText);
 				displayHunt(hunt);
+				getAllHunts();
 			}
 		}
 		else {
@@ -240,6 +239,5 @@ function deleteHunt(huntId) {
 		}
 	};
 	xhr.send();
-
 }
 
