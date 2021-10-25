@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Hunt } from 'src/app/models/hunt';
 import { HuntService } from 'src/app/services/hunt.service';
 
@@ -11,10 +12,30 @@ export class HuntListComponent implements OnInit {
   hunts: Hunt[] = [];
   newHunt: Hunt = new Hunt();
   editHunt: Hunt | null = null;
-  constructor(private huntService: HuntService) {}
+  selected: Hunt | null = null;
+  constructor(private huntService: HuntService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.loadHunts();
+    let huntIdString = this.route.snapshot.paramMap.get('id');
+    if(huntIdString) {
+      let huntId = Number.parseInt(huntIdString);
+      if(!isNaN(huntId)) {
+        this.huntService.show(huntId).subscribe(
+          (hunt)=> {
+            this.loadHunts();
+            this.selected = hunt;
+          },
+          (problem)=> {
+            this.router.navigateByUrl('not found');
+          }
+        )
+      }
+    }
+  }
+
+  displayHunt(hunt: Hunt) {
+    this.selected = hunt;
   }
 
   loadHunts() {
@@ -25,6 +46,18 @@ export class HuntListComponent implements OnInit {
       (fail)=> {
         console.error('hunt load failed');
         console.error(fail);
+      }
+    )
+  }
+  searchHunt(id: number) {
+    this.huntService.show(id).subscribe(
+      (hunt)=>{
+        this.selected = hunt;
+      },
+      (fail)=>{
+        console.error('single hunt load failed');
+        console.error(fail);
+
       }
     )
   }
@@ -52,5 +85,5 @@ export class HuntListComponent implements OnInit {
         console.error(err);
       }
     )
-  }
+  };
 }

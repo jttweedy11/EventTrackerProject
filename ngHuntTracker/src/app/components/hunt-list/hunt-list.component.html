@@ -1,15 +1,18 @@
+<style>
+  form {
+    height: 100px;
+    width: 70%;
+  }
+</style>
 <h1>Hunt Tracker</h1>
-<div>
+<div *ngIf="!selected">
   <table class="table table-striped table-hover">
     <thead>
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Size</th>
-        <th>Notes</th>
-        <th>Url</th>
         <th>EventDate</th>
-        <!-- <th>Detailed View</th> -->
+        <th>Detailed View</th>
         <th>Delete?</th>
       </tr>
     </thead>
@@ -17,25 +20,38 @@
       <tr *ngFor="let hunt of hunts">
         <td>{{hunt.id}}</td>
         <td>{{hunt.name}}</td>
-        <td>{{hunt.size}}</td>
-        <td>{{hunt.notes}}</td>
-        <td>{{hunt.url}}</td>
         <td>{{hunt.eventDate}}</td>
+        <td><button (click)="displayHunt(hunt);">View Hunt</button></td>
         <td><button (click)="deleteHunt(hunt.id)" class="btn btn-primary">Delete Hunt</button></td>
       </tr>
     </tbody>
   </table>
 </div>
-<div>
+<div *ngIf="!selected">
   <form>
     <label>Name:</label>
-    <input type="text" name="huntName" [(ngModel)]="newHunt.name"><br>
+    <input class="form-control form-control-lg" placeholder="Property Name" type="text" name="huntName"
+      [(ngModel)]="newHunt.name">
     <label>Size:</label>
-    <input type="text" name="huntSize" [(ngModel)]="newHunt.size"><br>
+    <input class="form-control form-control-lg" placeholder="Size (acr)" type="text" name="huntSize"
+      [(ngModel)]="newHunt.size">
     <label>Notes:</label>
-    <input type="text" name="huntNotes" [(ngModel)]="newHunt.notes"><br>
+    <input class="form-control form-control-lg" placeholder="Notes" type="text" name="huntNotes"
+      [(ngModel)]="newHunt.notes">
     <label>URL:</label>
-    <input type="text" name="huntURL" [(ngModel)]="newHunt.url"><br>
+    <input class="form-control form-control-lg" placeholder="Property URL" type="text" name="huntURL"
+      [(ngModel)]="newHunt.url">
     <button (click)="createHunt(newHunt)" class="btn btn-primary">Create Hunt</button>
   </form>
 </div>
+<div *ngIf="selected">
+  <ul class="list-group">
+    <li class="list-group-item">ID: {{selected.id}}</li>
+    <li class="list-group-item">Name: {{selected.name}}</li>
+    <li class="list-group-item">Size: {{selected.size}}</li>
+    <li class="list-group-item">Notes: {{selected.notes}}</li>
+    <li class="list-group-item">URL: {{selected.url}}</li>
+    <li class="list-group-item">Event Date: {{selected.eventDate}}</li>
+  </ul>
+</div>
+

@@ -9,11 +9,21 @@ import { HuntListComponent } from './components/hunt-list/hunt-list.component';
 import { HuntService } from './services/hunt.service';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HuntListComponent
+    HuntListComponent,
+    HomeComponent,
+    AboutComponent,
+    NavBarComponent,
+    NotFoundComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,

@@ -42,4 +42,20 @@ export class HuntService {
       })
     );
   }
+  show(huntId: number): Observable<Hunt> {
+    return this.http.get<Hunt>(this.url + '/' + huntId).pipe(
+      catchError((err: any)=> {
+        console.log(err);
+        return throwError('No search Results');
+      })
+    );
+  }
+  update(hunt: Hunt) {
+    return this.http.put<Hunt>(`${this.url}/${hunt.id}`,hunt).pipe(
+      catchError((err: any)=> {
+        console.log(err);
+        return throwError('Hunt update uns')
+      })
+    )
+  }
 }
