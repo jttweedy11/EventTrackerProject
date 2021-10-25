@@ -37,6 +37,24 @@ export class HuntListComponent implements OnInit {
   displayHunt(hunt: Hunt) {
     this.selected = hunt;
   }
+  disableView() {
+    this.selected = null;
+  }
+  setEditHunt() {
+    this.editHunt = Object.assign({}, this.selected);
+  }
+  updateHunt(hunt: Hunt, showHunt = true) {
+    this.huntService.update(hunt).subscribe(
+      (updated)=>{
+        this.loadHunts();
+        this.editHunt = null;
+        this.selected = updated;
+      },
+      (fail)=> {
+        console.error('this update did not work');
+      }
+    );
+  }
 
   loadHunts() {
     this.huntService.index().subscribe(

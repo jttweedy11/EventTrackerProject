@@ -21,7 +21,7 @@
         <td>{{hunt.id}}</td>
         <td>{{hunt.name}}</td>
         <td>{{hunt.eventDate}}</td>
-        <td><button (click)="displayHunt(hunt);">View Hunt</button></td>
+        <td><button (click)="displayHunt(hunt);" class="btn btn-primary">View Hunt</button></td>
         <td><button (click)="deleteHunt(hunt.id)" class="btn btn-primary">Delete Hunt</button></td>
       </tr>
     </tbody>
@@ -44,7 +44,7 @@
     <button (click)="createHunt(newHunt)" class="btn btn-primary">Create Hunt</button>
   </form>
 </div>
-<div *ngIf="selected">
+<div *ngIf="selected && !editHunt">
   <ul class="list-group">
     <li class="list-group-item">ID: {{selected.id}}</li>
     <li class="list-group-item">Name: {{selected.name}}</li>
@@ -52,6 +52,25 @@
     <li class="list-group-item">Notes: {{selected.notes}}</li>
     <li class="list-group-item">URL: {{selected.url}}</li>
     <li class="list-group-item">Event Date: {{selected.eventDate}}</li>
+    <button (click)="setEditHunt()">Edit</button>
+    <button (click)="disableView()">Back</button>
   </ul>
 </div>
+<div *ngIf="editHunt">
+  <form>
+    <label>Name:</label>
+    <input class="form-control form-control-lg" placeholder="Property Name" type="text" name="huntName"
+      [(ngModel)]="editHunt.name">
+    <label>Size:</label>
+    <input class="form-control form-control-lg" placeholder="Size (acr)" type="text" name="huntSize"
+      [(ngModel)]="editHunt.size">
+    <label>Notes:</label>
+    <input class="form-control form-control-lg" placeholder="Notes" type="text" name="huntNotes"
+      [(ngModel)]="editHunt.notes">
+    <label>URL:</label>
+    <input class="form-control form-control-lg" placeholder="Property URL" type="text" name="huntURL"
+      [(ngModel)]="editHunt.url">
+    <button (click)="updateHunt(editHunt)" class="btn btn-primary">Update Hunt</button>
+  </form>
 
+</div>

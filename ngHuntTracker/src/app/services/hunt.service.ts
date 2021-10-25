@@ -54,7 +54,7 @@ export class HuntService {
     return this.http.put<Hunt>(`${this.url}/${hunt.id}`,hunt).pipe(
       catchError((err: any)=> {
         console.log(err);
-        return throwError('Hunt update uns')
+        return throwError('Hunt update unsuccessful')
       })
     )
   }
