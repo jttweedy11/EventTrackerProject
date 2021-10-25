@@ -1,4 +1,41 @@
 <h1>Hunt Tracker</h1>
-<ul>
-  <li *ngFor="let hunt of hunts">{{hunt.id}}</li>
-</ul>
+<div>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Size</th>
+        <th>Notes</th>
+        <th>Url</th>
+        <th>EventDate</th>
+        <!-- <th>Detailed View</th> -->
+        <th>Delete?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hunt of hunts">
+        <td>{{hunt.id}}</td>
+        <td>{{hunt.name}}</td>
+        <td>{{hunt.size}}</td>
+        <td>{{hunt.notes}}</td>
+        <td>{{hunt.url}}</td>
+        <td>{{hunt.eventDate}}</td>
+        <td><button (click)="deleteHunt(hunt.id)" class="btn btn-primary">Delete Hunt</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <form>
+    <label>Name:</label>
+    <input type="text" name="huntName" [(ngModel)]="newHunt.name"><br>
+    <label>Size:</label>
+    <input type="text" name="huntSize" [(ngModel)]="newHunt.size"><br>
+    <label>Notes:</label>
+    <input type="text" name="huntNotes" [(ngModel)]="newHunt.notes"><br>
+    <label>URL:</label>
+    <input type="text" name="huntURL" [(ngModel)]="newHunt.url"><br>
+    <button (click)="createHunt(newHunt)" class="btn btn-primary">Create Hunt</button>
+  </form>
+</div>

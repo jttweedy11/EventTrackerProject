@@ -1,5 +1,6 @@
 package com.skilldistillery.hunttracker.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,7 @@ public class HuntServiceImple implements HuntService {
 	@Override
 	public Hunt create(Hunt hunt) {
 		Hunt newHunt = null;
+		hunt.setEventDate(LocalDate.now());
 		newHunt = huntRepo.saveAndFlush(hunt);
 		return newHunt;
 	}

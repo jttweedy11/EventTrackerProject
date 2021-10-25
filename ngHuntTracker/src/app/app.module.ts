@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HuntListComponent } from './components/hunt-list/hunt-list.component';
 import { HuntService } from './services/hunt.service';
+import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -17,10 +19,12 @@ import { HuntService } from './services/hunt.service';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
-    HuntService
+    HuntService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
